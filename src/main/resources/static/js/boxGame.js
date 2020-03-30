@@ -270,6 +270,16 @@ window.onload= function () {
                 url: "/leveUpload?leve=" + level,
                 method: "post",
                 success: res => {
+                    var autoindex = 600;
+                    var auto = setInterval(function(){
+                        if(autoindex > 300)
+                            context2.fillText("Level:"+level2+"自动储存中...",10,30);
+                        else
+                            context2.fillText("Level:"+level2+"储存完成",10,30);
+                        if(--autoindex === 0)
+                            clearInterval(auto);
+                    }, 1);
+
                 },
                 error: res => {
                 }
@@ -277,9 +287,11 @@ window.onload= function () {
         }
         context1.fillStyle="rgba(255,255,255,1)";
         context1.font="bold 30px cursive";
-        var level2=level+1
-        context2.fillText("Level:"+level2,10,20)
+        var level2=level+1;
+        context2.fillText("Level:"+level2,10,30);
+
     }
+
     document.getElementById("jump").onclick= function () {
         if(document.getElementById("guaQia").value>0&&document.getElementById("guaQia").value<100){
             level=document.getElementById("guaQia").value;

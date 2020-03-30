@@ -4,6 +4,7 @@ import com.aldrich_lin.pushbox.entity.User;
 import com.aldrich_lin.pushbox.entity.UserLeve;
 import com.aldrich_lin.pushbox.repository.UserRepository;
 import com.aldrich_lin.pushbox.utlis.UserUtil;
+import org.apache.tomcat.jni.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -65,8 +66,9 @@ public class UserController {
     @RequestMapping("/game")
     public String game(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = null;
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            String currentUserName = authentication.getName();
+            currentUserName = authentication.getName();
             System.out.println("登录成功-"+currentUserName);
             for(User user : userRepository.findAll()){
                 if(currentUserName.equals(user.getUsername())) {
@@ -75,7 +77,16 @@ public class UserController {
                 }
             }
         }
-        return "/game.html";
+        if(currentUserName != null)
+            return "/game.html?username="+currentUserName;
+        else
+            return "/game.html";
+    }
+
+    @GetMapping("/getusername")
+    @ResponseBody
+    public String getUserName(){
+        return nowUser.getUsername();
     }
 
     @RequestMapping("/rankpg")

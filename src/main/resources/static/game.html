@@ -60,8 +60,30 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/mapdata100.js"></script>
     <script src="js/boxGame.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                url: "/getusername",
+                success: res => {
+                    $("#gametitle").text("欢迎你, "+res);
+                },
+                error: res => {
+                    $("#gametitle").text("欢迎你");
+                }
+            });
+            // if(getUrlParam("username") != null)
+            //     $("#gametitle").text("欢迎你, "+getUrlParam("username"));
+            // else
+            //     $("#gametitle").text("欢迎你");
+        });
+
+    </script>
 </head>
 <body>
+<div style="text-align: center;width: 100%">
+    <h2 id="gametitle">欢迎你</h2>
+</div>
+
 <div id="game">
     <canvas id="canvas1" width="560px" height="560px"></canvas>
     <canvas id="canvas2" width="560px" height="560px"></canvas>
@@ -91,5 +113,7 @@
 
 
 </body>
-
+<script>
+    $('#gametitle').innerText = "欢迎你，"+username;
+</script>
 </html>
