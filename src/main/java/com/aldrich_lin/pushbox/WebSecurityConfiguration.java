@@ -8,10 +8,18 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-
+/**
+ * debug = true调试总开关
+ * 这是一个拦截器配置
+ */
 @EnableWebSecurity(debug = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    /**
+     * 用于配置账号用，前期测试用
+     * @param auth
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.inMemoryAuthentication().passwordEncoder(new MyPasswordEncoder());
@@ -44,7 +52,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().mvcMatchers("/css/**", "/js/**", "/img/**", "/vendors/**", "/icons/**", "/", "/users/create", "/now");
+        web.ignoring().mvcMatchers("/css/**", "/js/**", "/img/**", "/vendors/**", "/icons/**", "/", "/users/create", "/regsuccess");
     }
 }
 

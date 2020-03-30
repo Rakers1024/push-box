@@ -47,7 +47,7 @@ public class UserController {
         System.out.println("注册成功: 用户名"+username+"  密码"+password);
         userRepository.save(new User(username, password));
 
-        return "注册成功";
+        return "<script>window.location.href = '/regsuccess';</script>";
 
     }
 
@@ -55,6 +55,12 @@ public class UserController {
     public String index(){
         return "/index.html";
     }
+
+    @RequestMapping("/regsuccess")
+    public String regsuccess(){
+        return "/regsuccessful.html";
+    }
+
 
     @RequestMapping("/game")
     public String game(){

@@ -23,7 +23,8 @@ window.onload= function () {
         success: res => {
             level = res;
             setItem();
-            alert("取档成功！");
+            if(level > 0)   //第二关开始才取档
+                alert("取档成功！");
         }
     });
     /*function changeLevel(){   给nowLevel赋值
@@ -265,7 +266,14 @@ window.onload= function () {
             setItem();
 
             //通关默认储存到服务器
-            savelevel();
+            $.ajax({
+                url: "/leveUpload?leve=" + level,
+                method: "post",
+                success: res => {
+                },
+                error: res => {
+                }
+            })
         }
         context1.fillStyle="rgba(255,255,255,1)";
         context1.font="bold 30px cursive";
@@ -327,16 +335,16 @@ window.onload= function () {
 };
 
 //储存到服务器
-function savelevel() {
-    $.ajax({
-        url: "/leveUpload?leve=" + level,
-        method: "post",
-        success: res => {
-            alert("存档成功！");
-        },
-        error: res => {
-            alert("存档失败！");
-        }
-    })
-}
+// function savelevel(level) {
+//     $.ajax({
+//         url: "/leveUpload?leve=" + level,
+//         method: "post",
+//         success: res => {
+//             alert("存档成功！");
+//         },
+//         error: res => {
+//             alert("存档失败！");
+//         }
+//     })
+// }
 

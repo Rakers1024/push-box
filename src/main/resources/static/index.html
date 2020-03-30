@@ -9,7 +9,19 @@
     <link rel="stylesheet" href="css/style.css">
 
     <script src="js/form.js"></script>
-
+    <script>
+        function GetRequest() {
+            var url = location.search; //获取url中"?"符后的字串
+            if (url.indexOf("?") !== -1) {
+                var str = url.substr(1);
+                if(str === 'error'){
+                    alert('发生了错误！');
+                    window.location.href="/index";
+                }
+            }
+        }
+        GetRequest();
+    </script>
 </head>
 <body>
 
