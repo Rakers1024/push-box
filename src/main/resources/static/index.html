@@ -17,16 +17,16 @@
 <div class="form" style="position:relative">
 
     <!--注册表单-->
-    <div class="form_register" style="position:absolute">
+    <div class="form_register" style="height:0;">
         <form action="/users/create" method="post">
             <h1>注册</h1>
             <div class="form_item">
                 <label for="username">用户名：</label>
-                <input type="text" name="username" id="username" placeholder="请输入用户名" required>
+                <input type="text" name="username" class="username" placeholder="请输入用户名" required>
             </div>
             <div class="form_item">
                 <label for="password">密码：</label>
-                <input type="password" name="password" id="password" placeholder="请输入密码名" required>
+                <input type="password" name="password" class="password" placeholder="请输入密码名" required>
             </div>
 <!--            <div class="form_item">-->
 <!--                <label for="email">电子邮箱：</label>-->
@@ -44,7 +44,7 @@
     </div>
 
     <!--登录表单-->
-    <div class="form_login" style="height:0;">
+    <div class="form_login" style="position:absolute">
 
         <form action="/login" method="post">
             <h1>登录</h1>

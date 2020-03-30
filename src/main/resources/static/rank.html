@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>游戏排行榜</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div class="form" style="position:relative">
+        <div class="form_login" style="text-align: center;">
+            <h3>游戏排行榜</h3>
+            <table border="1" width="100%" style="text-align: center;" id="app">
+                <tr>
+                    <td>排名</td>
+                    <td>用户名</td>
+                    <td>时间</td>
+                    <td>关卡</td>
+                </tr>
+                <tr v-for="(item, index) in items">
+                    <td>{{index+1}}</td>
+                    <td>{{item.username}}</td>
+                    <td>{{item.date}}</td>
+                    <td>{{item.leve}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+<script>
+
+    //获取排行榜信息
+    $.ajax({
+        url: "/rank",
+        success: res => {
+            console.log(res);
+            var data = {items: res};
+            var vm = new Vue({
+                // 选项
+                el: '#app',
+                data: data
+            })
+        },
+        error: res => {
+            alert("获取排行榜信息失败！");
+        }
+    })
+
+</script>
+</html>

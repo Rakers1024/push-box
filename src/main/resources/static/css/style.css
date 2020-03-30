@@ -14,9 +14,9 @@ html{
     overflow: hidden;
     transition: height 1s;
 }
-.form_register{
-    height: 548px;
-}
+/*.form_register{*/
+/*    height: 548px;*/
+/*}*/
 
 .form form{
     padding: 25px 40px;

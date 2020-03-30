@@ -30,9 +30,7 @@ public class DatabaseDetailService implements UserDetailsService {
         System.out.println("登录账号:"+s);
         User myUser = null;
         for(User user : userRepository.findAll()){
-            System.out.println("查询账号:"+user.getUsername());
             if(s.equals(user.getUsername())) {
-                System.out.println("查询到账号:"+user.getUsername());
                 myUser = user;
                 break;
             }

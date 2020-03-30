@@ -16,6 +16,16 @@ window.onload= function () {
     var timeOut=true;
     var complete=0;
     setItem();
+
+    //读取服务器的存档
+    $.ajax({
+        url: "/leveDownload",
+        success: res => {
+            level = res;
+            setItem();
+            alert("取档成功！");
+        }
+    });
     /*function changeLevel(){   给nowLevel赋值
 
     }*/
@@ -252,7 +262,10 @@ window.onload= function () {
         }
         if(complete==balls.length){
             level++;
-            setItem()
+            setItem();
+
+            //通关默认储存到服务器
+            savelevel();
         }
         context1.fillStyle="rgba(255,255,255,1)";
         context1.font="bold 30px cursive";
@@ -269,9 +282,61 @@ window.onload= function () {
         }
 
 
-    }
-    document.getElementById("replay").onclick= function (){
+    };
+    $("#replay").click(function () {
         setItem()
-    }
+    });
 
+
+
+    $("#save").click(function () {
+        $.ajax({
+            url: "/leveUpload?leve=" + level,
+            method: "post",
+            success: res => {
+                alert("存档成功！");
+            },
+            error: res => {
+                alert("存档失败！");
+            }
+        })
+    });
+
+    $("#load").click(function () {
+        $.ajax({
+            url: "/leveDownload",
+            success: res => {
+                level = res;
+                setItem();
+                alert("取档成功！");
+            },
+            error: res => {
+                alert("取档失败！");
+            }
+        })
+    });
+
+    $("#rank").click(function () {
+        window.location.href = '/rankpg';
+    });
+
+    $("#logout").click(function () {
+        window.location.href = '/logout';
+        alert('退出成功！');
+    });
 };
+
+//储存到服务器
+function savelevel() {
+    $.ajax({
+        url: "/leveUpload?leve=" + level,
+        method: "post",
+        success: res => {
+            alert("存档成功！");
+        },
+        error: res => {
+            alert("存档失败！");
+        }
+    })
+}
+

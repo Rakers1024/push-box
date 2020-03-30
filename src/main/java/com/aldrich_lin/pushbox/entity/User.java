@@ -26,7 +26,7 @@ public class User {
         this.username = username;
         this.password = password;
         //默认第一关
-        this.leve = 1;
+        this.leve = 0;
 
         this.date = new Date(new java.util.Date().getTime());
     }
